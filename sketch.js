@@ -1,17 +1,22 @@
 const Engine = Matter.Engine;
+const Render = Matter.Render;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
+const Constraint = Matter.Constraint;
 const Body = Matter.Body;
-
+const Composites = Matter.Composites;
+const Composite = Matter.Composite;
 let engine;
 let world;
 var ground;
 var left
 var right
 var ball;
+var player, player1, player2
 
 function preload() {
-
+	player1 = loadImage("assets/messi1.png")
+	player2 = loadImage("assets/messi2.png")
 }
 
 function setup() {
@@ -27,10 +32,13 @@ function setup() {
 		isStatic:false,
 		restitution:0.3,
 		friction:0,
-		density:1.2
+		density:1.5
 	}
+	player = createSprite(1, 329, 100);
+	player.addAnimation(player1, player2);
+	player.scale = 1
 
-	ball = Bodies.circle(45, 355, 20, ball_options);
+	ball = Bodies.circle(70, 355, 20, ball_options);
 	World.add(world,ball);
 	ellipseMode(RADIUS);
 
@@ -47,10 +55,11 @@ function draw () {
 	right.show()
 	drawSprites();
 	Engine.update(engine);
+	
 }
 
 function keyPressed () {
 	if (keyCode === 32) {
-		Matter.Body.applyForce(ball, {x:0,y:0}, {x:30,y:-50})
+		Matter.Body.applyForce(ball, {x:0,y:0}, {x:60,y:-109})
 	}
 }
