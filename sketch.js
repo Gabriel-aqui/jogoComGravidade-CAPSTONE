@@ -11,6 +11,7 @@ let world;
 var ground;
 var left
 var right
+var thing, thing2
 var ball;
 var player, player1, player2
 
@@ -26,6 +27,8 @@ function setup() {
 	ground = new Ground(200,390,400,20);
     left = new Ground(210, 350, 20, 150)
     right = new Ground(350, 350, 20, 150)
+	thing = new Ground(390, 100, 20, 290)
+	thing2 = new Ground(250, 30, 20, 50)
 
 	//Create the Bodies Here.
 	var ball_options = {
@@ -53,6 +56,8 @@ function draw () {
 	ground.show();
 	left.show()
 	right.show()
+	thing.show()
+	thing2.show()
 	drawSprites();
 	Engine.update(engine);
 	
@@ -60,6 +65,6 @@ function draw () {
 
 function keyPressed () {
 	if (keyCode === 32) {
-		Matter.Body.applyForce(ball, {x:0,y:0}, {x:60,y:-109})
+		Matter.Body.applyForce(ball, {x:0,y:0}, {x:100,y:-120})
 	}
 }
